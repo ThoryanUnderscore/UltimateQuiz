@@ -1,0 +1,153 @@
+:root {
+  --primary: #4b7bec;
+  --success: #26de81;
+  --danger: #eb4d4b;
+  --dark: #2f3542;
+  --bg: #f1f2f6;
+}
+
+body { margin: 0; background: var(--bg); font-family: 'Segoe UI', sans-serif; }
+
+.app { max-width: 700px; margin: 40px auto; padding: 20px; text-align: center; }
+
+/* Accueil & Cartes de difficulté */
+.hero h1 { font-size: 2.5rem; color: var(--dark); margin-bottom: 10px; }
+.difficulty-grid { 
+  display: grid; 
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 20px; 
+  margin-top: 40px; 
+}
+
+.difficulty-card {
+  padding: 30px 20px;
+  border: none;
+  border-radius: 16px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.difficulty-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+.difficulty-card.easy { border-bottom: 5px solid #2ecc71; color: #2ecc71; }
+.difficulty-card.medium { border-bottom: 5px solid #f1c40f; color: #f1c40f; }
+.difficulty-card.hard { border-bottom: 5px solid #e67e22; color: #e67e22; }
+.difficulty-card.expert { border-bottom: 5px solid #e74c3c; color: #e74c3c; }
+
+.diff-label { font-size: 1.4rem; font-weight: bold; color: var(--dark); }
+.diff-desc { color: #747d8c; font-size: 0.9rem; }
+
+/* Quiz en cours */
+.progress-container { background: #dcdde1; height: 8px; border-radius: 4px; margin-bottom: 30px; overflow: hidden; }
+.progress-bar { background: var(--primary); height: 100%; transition: width 0.3s ease; }
+
+.question-meta { color: #747d8c; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; }
+.question-text { font-size: 1.5rem; color: var(--dark); margin: 20px 0; }
+
+.answer-section { display: grid; gap: 12px; }
+.answer-btn {
+  background: white;
+  border: 2px solid #edeff2;
+  padding: 18px;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.answer-btn:hover:not(:disabled) { border-color: var(--primary); background: #f8faff; }
+
+/* Feedback */
+.btn-correct { background: var(--success) !important; color: white; border-color: var(--success) !important; }
+.btn-incorrect { background: var(--danger) !important; color: white; border-color: var(--danger) !important; }
+
+/* Résultats */
+.final-score-card { background: white; padding: 30px; border-radius: 20px; margin-bottom: 30px; }
+.score-circle { font-size: 3rem; color: var(--primary); }
+.score-circle span { font-size: 1.5rem; color: #a4b0be; }
+
+.summary-item { background: white; margin-bottom: 10px; border-radius: 12px; text-align: left; transition: 0.2s; }
+.summary-header { padding: 15px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+.summary-details { padding: 15px; border-top: 1px solid #f1f2f6; background: #f9f9fb; border-radius: 0 0 12px 12px; }
+
+.animate-in { animation: fadeIn 0.5s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+@media (max-width: 500px) { .difficulty-grid { grid-template-columns: 1fr; } }
+
+
+/* --- BOUTON MENU PRINCIPAL --- */
+.results-footer {
+  margin-top: 40px;
+  padding-bottom: 20px;
+}
+
+.btn-main-menu {
+  background: var(--dark);
+  color: white;
+  border: none;
+  padding: 16px 40px;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn-main-menu:hover {
+  background: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(75, 123, 236, 0.3);
+}
+
+/* --- EFFET SUR LES QUESTIONS DÉVELOPPÉES --- */
+.summary-item.is-open {
+  transform: scale(1.02);
+  z-index: 10;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Bordure qui ressort selon le résultat */
+.summary-item.correct.is-open {
+  border: 2px solid var(--success);
+}
+
+.summary-item.incorrect.is-open {
+  border: 2px solid var(--danger);
+}
+
+.summary-header {
+  transition: background 0.2s;
+}
+
+.is-open .summary-header {
+  background: #f8faff;
+  font-weight: bold;
+}
+
+/* Boîte d'explication stylisée */
+.detail-row {
+  margin-bottom: 8px;
+  display: flex;
+  gap: 10px;
+  font-size: 1rem;
+}
+
+.explanation-box {
+  margin-top: 15px;
+  padding: 12px;
+  background: white;
+  border-radius: 8px;
+  border-left: 3px solid var(--primary);
+  font-style: italic;
+  color: #4a5568;
+}
+
+/* Animation douce pour l'ouverture */
+.summary-details {
+  overflow: hidden;
+}
